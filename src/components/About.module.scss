@@ -1,0 +1,50 @@
+@import '../styles/variables.scss';
+
+.about {
+  padding: 8rem 2rem;
+  background: $background;
+}
+
+.aboutContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.aboutContent {
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: $primary;
+  }
+  
+  p {
+    color: $text-light;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+.aboutImage {
+  height: 400px;
+  background: $background-secondary;
+  border: 1px solid $border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-light;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .aboutContainer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

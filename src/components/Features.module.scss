@@ -1,0 +1,62 @@
+@import '../styles/variables.scss';
+
+.features {
+  padding: 8rem 2rem;
+  background: $background-secondary;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 100;
+  margin-bottom: 3rem;
+  color: $primary;
+}
+
+.featuresContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+}
+
+.feature {
+  text-align: center;
+  padding: 2rem;
+  
+  .featureIcon {
+    width: 60px;
+    height: 60px;
+    background: $accent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    font-size: 1.5rem;
+    color: $secondary;
+    transition: all 0.3s ease;
+  }
+  
+  &:nth-child(even) .featureIcon {
+    background: $accent-secondary;
+  }
+  
+  &:hover .featureIcon {
+    transform: scale(1.1);
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    color: $primary;
+  }
+  
+  p {
+    color: $text-light;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+}

@@ -1,0 +1,85 @@
+@import '../styles/variables.scss';
+
+.contact {
+  padding: 8rem 2rem;
+  background: $background;
+}
+
+.contactContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 100;
+  margin-bottom: 2rem;
+  color: $primary;
+}
+
+.contactDescription {
+  color: $text-light;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.contactForm {
+  display: grid;
+  gap: 2rem;
+  margin-top: 3rem;
+  
+  .formGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  input, textarea {
+    background: $background-secondary;
+    border: 1px solid $border;
+    color: $text;
+    padding: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: $accent;
+    }
+    
+    &::placeholder {
+      color: $text-light;
+    }
+  }
+  
+  textarea {
+    grid-column: 1 / -1;
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+.submitBtn {
+  background: $accent;
+  color: $secondary;
+  padding: 1.2rem 3rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: 2px solid $accent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  justify-self: center;
+  
+  &:hover {
+    background: transparent;
+    color: $accent;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactForm .formGroup {
+    grid-template-columns: 1fr;
+  }
+}
