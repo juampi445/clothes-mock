@@ -9,9 +9,9 @@ import Footer from '../../components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Dynamic imports to prevent SSR issues
-const CheckoutForm = dynamic(() => import('../../components/checkout/CheckoutForm'), {
+const StripeCheckoutForm = dynamic(() => import('../../components/checkout/StripeCheckoutForm'), {
   ssr: false,
-  loading: () => <p>Loading checkout form...</p>
+  loading: () => <p>Loading payment form...</p>
 });
 
 const DemoCheckoutForm = dynamic(() => import('../../components/checkout/DemoCheckoutForm'), {
@@ -28,7 +28,6 @@ export default function CheckoutPage() {
   const [isClient, setIsClient] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
   const [stripePromise, setStripePromise] = useState<Promise<Stripe | null> | null>(null);
-  const [hasStripeKey, setHasStripeKey] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -63,15 +62,12 @@ export default function CheckoutPage() {
           const { publishableKey } = await response.json();
           if (publishableKey) {
             setStripePromise(loadStripe(publishableKey));
-            setHasStripeKey(true);
           }
         } else {
           console.warn('Failed to fetch Stripe configuration');
-          setHasStripeKey(false);
         }
       } catch (error) {
         console.error('Error initializing Stripe:', error);
-        setHasStripeKey(false);
       }
     };
 
@@ -101,7 +97,7 @@ export default function CheckoutPage() {
       <main>
         {stripePromise ? (
           <Elements stripe={stripePromise}>
-            <CheckoutForm hasStripeKey={hasStripeKey} />
+            <StripeCheckoutForm />
           </Elements>
         ) : (
           <DemoCheckoutForm />
