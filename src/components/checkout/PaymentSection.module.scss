@@ -1,0 +1,113 @@
+@import '../../styles/variables.scss';
+
+.formSection {
+  background: $background-secondary;
+  border: 1px solid $border;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  h3 {
+    color: $primary;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.demoModeInfo {
+  background: rgba($accent-secondary, 0.1);
+  border: 1px solid $accent-secondary;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  p {
+    margin-bottom: 0.5rem;
+    color: $text;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: $accent-secondary;
+    }
+
+    code {
+      background: rgba($accent-secondary, 0.2);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      color: $accent-secondary;
+    }
+  }
+}
+
+.testCardInfo {
+  background: rgba($accent, 0.1);
+  border: 1px solid $accent;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  p {
+    margin-bottom: 0.5rem;
+    color: $text;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: $accent;
+    }
+  }
+}
+
+.cardElementContainer {
+  background: $background-tertiary;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+
+  &:focus-within {
+    border-color: $accent;
+    box-shadow: 0 0 0 3px rgba($accent, 0.1);
+  }
+}
+
+.demoCardInput {
+  .formControl {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: $background-tertiary;
+    border: 1px solid $border;
+    border-radius: 8px;
+    color: $text-light;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .formSection {
+    padding: 1.5rem;
+  }
+
+  .demoModeInfo,
+  .testCardInfo {
+    padding: 1rem;
+  }
+
+  .cardElementContainer {
+    padding: 0.75rem;
+  }
+}

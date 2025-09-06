@@ -1,0 +1,150 @@
+@import '../../styles/variables.scss';
+
+.orderSummary {
+  background: $background-secondary;
+  border: 1px solid $border;
+  border-radius: 12px;
+  padding: 2rem;
+  position: sticky;
+  top: 8rem;
+  height: fit-content;
+
+  h3 {
+    color: $primary;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.orderItems {
+  margin-bottom: 2rem;
+}
+
+.orderItem {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid $border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.orderItemImage {
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.orderImg {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.itemInfo {
+  flex-grow: 1;
+
+  h4 {
+    color: $primary;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+
+  p {
+    color: $text-light;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.itemPrice {
+  color: $accent !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+}
+
+.orderTotal {
+  border-top: 2px solid $border;
+  padding-top: 1rem;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  color: $text;
+  font-size: 0.9rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  span:last-child {
+    font-weight: 600;
+  }
+}
+
+.finalTotal {
+  border-top: 1px solid $border;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 1.1rem !important;
+  font-weight: 600;
+
+  span {
+    color: $accent;
+    font-weight: 700;
+  }
+}
+
+// Responsive design
+@media (max-width: 991px) {
+  .orderSummary {
+    position: static;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .orderSummary {
+    padding: 1.5rem;
+  }
+
+  .orderItem {
+    padding: 0.75rem 0;
+  }
+
+  .orderItemImage {
+    margin-right: 0.75rem;
+  }
+
+  .itemInfo {
+    h4 {
+      font-size: 0.8rem;
+    }
+
+    p {
+      font-size: 0.75rem;
+    }
+  }
+
+  .itemPrice {
+    font-size: 0.8rem !important;
+  }
+
+  .totalRow {
+    font-size: 0.8rem;
+  }
+
+  .finalTotal {
+    font-size: 1rem !important;
+  }
+}

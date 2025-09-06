@@ -1,0 +1,188 @@
+@import '../../styles/variables.scss';
+
+.checkoutContainer {
+  min-height: 100vh;
+  background: $background;
+  color: $text;
+  padding: 8rem 0 4rem;
+}
+
+.checkoutHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: $text-light;
+  }
+}
+
+.checkoutForm {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.emptyCart {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: $background-secondary;
+  border-radius: 12px;
+  border: 1px solid $border;
+  max-width: 600px;
+  margin: 0 auto;
+
+  h3 {
+    color: $primary;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: $text-light;
+    margin-bottom: 2rem;
+  }
+}
+
+.shopBtn {
+  background: linear-gradient(135deg, $accent 0%, lighten($accent, 10%) 100%);
+  color: $secondary !important;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba($accent, 0.3);
+  }
+}
+
+.payButton {
+  width: 100%;
+  background: linear-gradient(135deg, $accent 0%, lighten($accent, 10%) 100%);
+  color: $secondary;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba($accent, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.errorMessage {
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.successContainer {
+  min-height: 100vh;
+  background: $background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.successContent {
+  background: $background-secondary;
+  border: 1px solid $border;
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+
+  h2 {
+    color: $accent;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+
+  p {
+    color: $text;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+
+    &:last-child {
+      color: $text-light;
+      font-style: italic;
+    }
+  }
+}
+
+.successIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: $accent;
+  
+  svg {
+    filter: drop-shadow(0 4px 8px rgba($accent, 0.3));
+    animation: successPulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes successPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .checkoutContainer {
+    padding: 6rem 0 2rem;
+  }
+
+  .checkoutHeader {
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .checkoutForm {
+    padding: 0 0.5rem;
+  }
+
+  .emptyCart {
+    padding: 2rem 1rem;
+  }
+
+  .successContent {
+    padding: 2rem;
+  }
+}
