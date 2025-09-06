@@ -1,13 +1,23 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import CheckoutForm from '../../components/checkout/CheckoutForm';
-import DemoCheckoutForm from '../../components/checkout/DemoCheckoutForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Dynamic imports to prevent SSR issues
+const CheckoutForm = dynamic(() => import('../../components/checkout/CheckoutForm'), {
+  ssr: false,
+  loading: () => <p>Loading checkout form...</p>
+});
+
+const DemoCheckoutForm = dynamic(() => import('../../components/checkout/DemoCheckoutForm'), {
+  ssr: false,
+  loading: () => <p>Loading demo checkout...</p>
+});
 
 interface CartItem {
   id: number;
@@ -15,11 +25,18 @@ interface CartItem {
 }
 
 export default function CheckoutPage() {
+  const [isClient, setIsClient] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
   const [stripePromise, setStripePromise] = useState<Promise<Stripe | null> | null>(null);
   const [hasStripeKey, setHasStripeKey] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+    
     // Update cart count
     const updateCartCount = () => {
       const savedCart = localStorage.getItem('cart');
@@ -33,9 +50,11 @@ export default function CheckoutPage() {
     updateCartCount();
     window.addEventListener('storage', updateCartCount);
     return () => window.removeEventListener('storage', updateCartCount);
-  }, []);
+  }, [isClient]);
 
   useEffect(() => {
+    if (!isClient) return;
+    
     // Fetch Stripe publishable key from API
     const initializeStripe = async () => {
       try {
@@ -57,12 +76,23 @@ export default function CheckoutPage() {
     };
 
     initializeStripe();
-  }, []);
+  }, [isClient]);
 
   // Empty cart toggle function since checkout doesn't need cart toggle
   const handleCartToggle = () => {
     // No-op for checkout page
   };
+
+  // Don't render until client-side to avoid SSR issues
+  if (!isClient) {
+    return (
+      <div className="checkout-page">
+        <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="checkout-page">

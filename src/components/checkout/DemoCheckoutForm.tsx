@@ -31,6 +31,7 @@ interface CustomerInfo {
 }
 
 export default function DemoCheckoutForm() {
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -46,11 +47,17 @@ export default function DemoCheckoutForm() {
   });
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
-    }
+    setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      const savedCart = localStorage.getItem('cart');
+      if (savedCart) {
+        setCart(JSON.parse(savedCart));
+      }
+    }
+  }, [isClient]);
 
   const getCartTotal = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
@@ -71,6 +78,19 @@ export default function DemoCheckoutForm() {
       router.push('/?checkout=demo-success');
     }, 3000);
   };
+
+  // Don't render on server side to avoid hydration issues
+  if (!isClient) {
+    return (
+      <div className={styles.checkoutContainer}>
+        <div className="container">
+          <div className="text-center">
+            <p>Loading checkout...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (success) {
     return (
